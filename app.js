@@ -1,4 +1,5 @@
 // todo-backend/app.js
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,12 +9,15 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const mongoUri = process.env.MONGODB_URI;
+
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://rohitg247:3z1DtgsRAjFONK7l@cluster0.e3rejnk.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
